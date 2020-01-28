@@ -2,55 +2,35 @@
 var questions = [
   {   
     q: "What do the 100 folds in a chef's hat represent?",
-    choices: ["wrong", "wrong", "100 ways to cook an egg", "wrong"], 
-    a: [ 
-        {text: '', correct: false},
-        {text: '', correct: false},
-        {text: '100 ways to cook an egg', correct: true},
-        {text: '', correct: false},
-    ]},
+    choices: ['100 hours of official training', '100 five-star reviews', '100 ways to cook an egg', '100 recognized desserts'], 
+    a:  '100 ways to cook an egg'
+    },
     {
     q: "What is the national animal of Scotland?",
-    a: [
-        {text: 'Unicorn', correct: true},
-        {text: '', correct: false},
-        {text: '', correct: false},
-        {text: '', correct: false},
-    ]},
+    choices: ['Unicorn', 'Horse', 'Donkey', 'Sparrow'], 
+    a:  'Unicorn'
+    },
     {
     q: "On average, how much does the heart of a blue whale (the world's largest animal) weight?",
-    a: [ 
-        {text: '', correct: false},
-        {text: '', correct: false},
-        {text: '', correct: false},
-        {text: '400 pounds', correct: true},
-    ]},
+    choices: ['50 pounds', '100 pounds', '200 pounds', '400 pounds'], 
+    a:  '400 pounds'
+    },
     {
     q: "Which bird can mimick almost any sound they hear (including a chainsaw)?",
-    a: [
-        {text: '', correct: false},
-        {text: '', correct: false},
-        {text: 'lyrebird', correct: true},
-        {text: '', correct: false},
-    ]},
+    choices: ['Kookaburra', 'Mockingbird', 'Lyrebird', 'Hummingbird'], 
+    a:  'Lyrebird'
+    },
     {
     q: "Which college can you major in wine ('Viticulture and Enology' a.k.a, the cultivation of grapes and the science of winemaking)",
-    a: [
-        {text: 'University of California,  Santa Barbara', correct: false},
-        {text: 'Cornell University', correct: true},
-        {text: 'Arizona State University', correct: false},
-        {text: 'Tulane', correct: false},
-    ]},
+    choices: ['University of California, Santa Barbara', 'Cornell University', 'Arizona State University', 'Tulane'], 
+    a:  'Cornell University'
+    },
     {
     q: "How much does it cost to make a $1 bill?",
-    a: [
-        {text: '1 cent', correct: false},
-        {text: '5 cents', correct: true},
-        {text: '8 cents', correct: false},
-        {text: '11 cents', correct: false},
-    ]},
+    choices: ['1 cent', '5 cents', '8 cents', '11 cents'], 
+    a:  '5 cents'
+    },
 ];
-
 // variables to keep track of quiz state
 var time = questions.length * 15;
 var currentQuestionIndex = 0;
