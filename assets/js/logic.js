@@ -79,24 +79,16 @@ function getQuestion(){
       butt.innerHTML =choiceArr[i];
       choicesEl.appendChild(butt);
   };
-  
 
-      
-
-  // document.getElementById("choices").innerHTML = choiceArr; (dont need??)
+  for (var z= 0; z < questions.length; z++) {
+    butt.addEventListener("click", questions.q[z++]); 
+    butt.addEventListener("click", questions.choices[z++]); 
+  }
 
   currentQuestionIndex++;
 
-
-
-  for (var i = 0; i < question.length; i++){
-    console.log(questions[i]);
-  }
-
-  for (var i = 0; i < qChoices.length; i++){
-   console.log(qChoices[i]);
-  }
-
+  // if the user clicks the correct button--> show correct and go to next question
+  // if user clicks wrong --> show wrong answer and go to next question 
 
 };
 
