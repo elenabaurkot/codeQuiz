@@ -64,6 +64,8 @@ var startBtn = document.getElementById("start");
   @TODO: write the rest of your variables here
 */
 
+// Function to check answers
+
 
 // function to show questions
 function getQuestion(){
@@ -78,19 +80,58 @@ function getQuestion(){
     var butt = document.createElement("button");
       butt.innerHTML =choiceArr[i];
       choicesEl.appendChild(butt);
+      choicesEl.setAttribute("id", "choiceButtons")
   };
-
-  for (var z= 0; z < questions.length; z++) {
-    butt.addEventListener("click", questions.q[z++]); 
-    butt.addEventListener("click", questions.choices[z++]); 
-  }
-
-  currentQuestionIndex++;
+  
+  document.getElementById("#choiceButtons").addEventListener("click", function() {
+      // call the function to check answers
+      // to push the next question, you need to have a function to be executed 
+      currentQuestionsIndex++;
+  });
+  
+  
 
   // if the user clicks the correct button--> show correct and go to next question
   // if user clicks wrong --> show wrong answer and go to next question 
+  butt.addEventListener("click", function(event){
+    console.log("button.event", event.target);
+    if (event.target.matches("choiceButtons"))
+    {
+      event.preventDefault();
+      currentQuestionsIndex++; 
+    }
+  }); 
+
+  currentQuestionIndex++;
 
 };
+
+
+
+
+// helpful code from 4-19 
+/*function handleClick(event) {
+  if (event.target.matches("button")) {
+    event.preventDefault();
+    modalEl.style.display = "block";
+    currentId = parseInt(event.target.parentElement.id);
+    var name = people[currentId].name;
+    var description = people[currentId].description;
+    modalNameEl.textContent = name;
+    if(description) {
+      descriptionEl.value = description;
+    } else {
+      descriptionEl.value = "";
+    }
+  }
+}
+
+closeEl.addEventListener("click", close);
+saveBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+  people[currentId].description = descriptionEl.value;
+  close();
+}); /*
 
 
 
@@ -213,10 +254,8 @@ function clockTick() {
       if (time < 1) {
         window.clearInterval(update);
       }
-    }
-    update = setInterval("clockTick()", 1000);
     startBtn.addEventListener("click", clockTick);
-
+    };
   /*
     @TODO: write the rest of your function code here
   */
