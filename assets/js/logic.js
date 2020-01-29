@@ -67,10 +67,27 @@ var startBtn = document.getElementById("start");
 
 // function to show questions
 function getQuestion(){
-  let quIndex = 0;
-  var question = questions[quIndex].q;
-  var qChoices = questions[quIndex].choices;
+  // let quIndex = 0;
+  var question = questions[currentQuestionIndex].q;
+  var choiceArr = questions[currentQuestionIndex].choices;
   document.getElementById("questions").innerHTML = question;
+
+
+  // for loop for the choices array to create the choice "button" for each choice
+  for (var i = 0; i < choiceArr.length; i++) {
+    var butt = document.createElement("button");
+      butt.innerHTML =choiceArr[i];
+      choicesEl.appendChild(butt);
+  };
+  
+
+      
+
+  // document.getElementById("choices").innerHTML = choiceArr; (dont need??)
+
+  currentQuestionIndex++;
+
+
 
   for (var i = 0; i < question.length; i++){
     console.log(questions[i]);
@@ -79,6 +96,7 @@ function getQuestion(){
   for (var i = 0; i < qChoices.length; i++){
    console.log(qChoices[i]);
   }
+
 
 };
 
@@ -111,7 +129,6 @@ function startQuiz() {
   // call the function that gets the next question 
   //getQuestion();
   getQuestion();
-  clockTick();
 }
 
 
@@ -206,6 +223,7 @@ function clockTick() {
       }
     }
     update = setInterval("clockTick()", 1000);
+    startBtn.addEventListener("click", clockTick);
 
   /*
     @TODO: write the rest of your function code here
