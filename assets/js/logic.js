@@ -32,7 +32,7 @@ var questions = [
     },
 ];
 // variables to keep track of quiz state
-var time = questions.length * 15;
+var time = questions.length * 20;
 var currentQuestionIndex = 0;
 var timerId;
 
@@ -65,6 +65,25 @@ var startBtn = document.getElementById("start");
 */
 
 
+// function to show questions
+function getQuestion(){
+  let quIndex = 0;
+  var question = questions[quIndex].q;
+  var qChoices = questions[quIndex].choices;
+  document.getElementById("questions").innerHTML = question;
+
+  for (var i = 0; i < question.length; i++){
+    console.log(questions[i]);
+  }
+
+  for (var i = 0; i < qChoices.length; i++){
+   console.log(qChoices[i]);
+  }
+
+};
+
+
+
 /**
  * Function to start the quiz
  * 
@@ -81,7 +100,7 @@ function startQuiz() {
   startScreenEl.setAttribute("class", "hide");
 
   // un-hide questions container
-  questionsEl.removeAttribute("class");
+  questionsEl.removeAttribute("class", "hide");
 
   // start timer
   timerId = setInterval(clockTick, 1000);
@@ -90,8 +109,9 @@ function startQuiz() {
   timerEl.textContent = time;
 
   // call the function that gets the next question 
+  //getQuestion();
   getQuestion();
-
+  clockTick();
 }
 
 
@@ -106,13 +126,11 @@ function startQuiz() {
  * @see https://www.w3schools.com/jsref/event_onclick.asp
  * @see https://www.w3schools.com/js/js_htmldom_methods.asp
  */
-function getQuestion() {
 
   /*
     @TODO: write your function code here
   */
 
-}
 
 
 /**
@@ -179,17 +197,22 @@ function quizEnd() {
  *  - [x] End the quiz if the user runs out of time
  */
 function clockTick() {
+      time = time - 1; 
+      if (time < questions.length * 20) {
+        timerEl.innerHTML = time; 
+      }
+      if (time < 1) {
+        window.clearInterval(update);
+      }
+    }
+    update = setInterval("clockTick()", 1000);
 
   /*
     @TODO: write the rest of your function code here
   */
   
   // end the quiz if the user runs out of time
-  if (time <= 0) {
-    quizEnd();
-  }
-
-}
+  
 
 
 /**
