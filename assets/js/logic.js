@@ -116,7 +116,6 @@ function startQuiz() {
   // call the function that gets the next question 
   //getQuestion();
   getQuestion();
-  quizEnd();
 }
 
 /**
@@ -156,7 +155,7 @@ function questionClick() {
 
   // check if we've run out of questions
   if (currentQuestionIndex === questions.length) {
-    quizEnd();
+    window.location.href = "highscores.html";
   } else {
     getQuestion();
   }
@@ -179,10 +178,9 @@ function questionClick() {
  * @see https://www.w3schools.com/jsref/met_element_setattribute.asp
  * @see https://www.w3schools.com/jsref/met_element_removeattribute.asp
  */
-function quizEnd() {  
-  if(time === 0) {
-  window.location.href = "highscores.html";
-}};
+
+//  timer not working at end to redirect
+
 
 
 
@@ -200,7 +198,7 @@ function clockTick() {
         timerEl.innerHTML = time; 
       }
       if (time < 1) {
-        window.clearInterval(timerId);
+        window.location.href = "highscores.html";
       }
     startBtn.addEventListener("click", clockTick);
     }
