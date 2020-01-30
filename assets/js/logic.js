@@ -202,13 +202,14 @@ function clockTick() {
         timerEl.innerHTML = time; 
       }
       if (time < 1) {
-        window.clearInterval(update);
+        window.clearInterval(timerId);
       }
     startBtn.addEventListener("click", clockTick);
     }
   /*
     @TODO: write the rest of your function code here
   */
+
   
   // end the quiz if the user runs out of time
   
