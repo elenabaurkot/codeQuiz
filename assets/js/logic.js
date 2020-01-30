@@ -45,39 +45,60 @@ var submitBtn = document.getElementById("submit");
 var startBtn = document.getElementById("start");
 var choiceArr = questions[currentQuestionIndex].choices;
 var question = questions[currentQuestionIndex].q;
+var choicess = document.querySelector(".choices");
+var questionss = document.getElementById("questions");
 
 
 // function to show questions
 function getQuestion(){
-  document.getElementById("questions").innerHTML = questions[0].q;
-  console.log(question++);
-
+  question = questions[currentQuestionIndex].q;
+  questionss.innerHTML = '';
+  questionss.innerHTML = question;
+  choiceArr = questions[currentQuestionIndex].choices;
+  choicess.innerHTML = "";
   // for loop for the choices array to create the choice "button" for each choice
   for (var i = 0; i < choiceArr.length; i++) {
     var choiceButton = document.createElement("button");
       choiceButton.innerHTML =choiceArr[i];
       choicesEl.appendChild(choiceButton);
-      choicesEl.setAttribute("id", "choiceButtons")
+      choicesEl.setAttribute("class", "choice");
+  }
+};
 
+      
+  
+  // CANNOT FIGURE OUT HOW TO: on click of one of the buttons go to the next question and next set of choices
+  // var buttonChoice = document.querySelector(".wrapper")
+  
 
-      // CANNOT FIGURE OUT HOW TO: on click of one of the buttons go to the next question and next set of choices
-  choiceButton.addEventListener("click", function(event){
+  /*buttonChoice.addEventListener("click", function(event){
     console.log("button.event", event.target);
     if (event.target.matches("choiceButtons"))
     {
-      choicesEl.innerText = currentChoicesIndex++;
-      questionsEl.innerText = currentQuestionIndex++;
+      choicesEl.innerText = currentQuestionIndex++;
+      question = currentQuestionIndex++; 
+      currentQuestionIndex++;
+      question;
+      choiceArr;
+      getQuestion();
     };
+  });  */
 
-    choiceButton.onclick = ()=> {
-      for (var m = 0; m < questions.length; m++) {
-      // questionsEl.innerText = questions[m++];
-      // document.getElementById("questions").innerHTML = questions[m++];
+  document.querySelector(".choices").addEventListener("click", function(event){
+    console.log("button.event", event.target);
+    console.log(event.target.textContent);
+      if (event.target.textContent === questions[currentQuestionIndex].a){
+        alert("You got it!");
       }
-    }
+
+      currentQuestionIndex++;
+      getQuestion();
   });
-};
-};
+
+  
+
+
+
 
 // functin to move to next question 
   function nextQuestion() {
@@ -89,20 +110,9 @@ function getQuestion(){
 // Function to check answers
 
 
-
-
-  /*
-  document.getElementById("#choiceButtons").addEventListener("click", function() {
-      // call the function to check answers
-      // to push the next question, you need to have a function to be executed 
-      currentQuestionsIndex++;
-  });
-  *
 /**
  * Function to start the quiz
- *
- * This function does the following:
- *  - [x] Get the next question*/
+ */
 function startQuiz() {
   // hide start screen
   var startScreenEl = document.getElementById("start-screen");
