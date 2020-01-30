@@ -31,152 +31,103 @@ var questions = [
     a:  '5 cents'
     },
 ];
+
+
 // variables to keep track of quiz state
 var time = questions.length * 20;
 var currentQuestionIndex = 0;
 var timerId;
 
-/**
- * Variables to reference DOM elements
- * 
- * @description
- * You MAY want to consider the following elements:
- *  - [x] A button to start the quiz
- *  - [x] An element that displays the current time
- *  - [x] A questions container that has:
- *    - [ ] An element that displays the current question text
- *    - [x] A container for the choices buttons
- *  - [ ] An element that displays whether the user got a question correct or not
- *  - [ ] An input field to allow the user to put in their initials 
- *  - [x] A button to submit the user's high score
- * 
- * NOTE: Make sure your `index.html` elements correspond to these!
- * 
- * @see https://www.w3schools.com/jsref/met_document_getelementbyid.asp
- */
 var questionsEl = document.getElementById("questions");
 var timerEl = document.getElementById("time");
 var choicesEl = document.getElementById("choices");
 var submitBtn = document.getElementById("submit");
 var startBtn = document.getElementById("start");
-
-/*
-  @TODO: write the rest of your variables here
-*/
-
-// Function to check answers
+var choiceArr = questions[currentQuestionIndex].choices;
+var question = questions[currentQuestionIndex].q;
 
 
 // function to show questions
 function getQuestion(){
-  // let quIndex = 0;
-  var question = questions[currentQuestionIndex].q;
-  var choiceArr = questions[currentQuestionIndex].choices;
-  document.getElementById("questions").innerHTML = question;
-
+  document.getElementById("questions").innerHTML = questions[0].q;
+  console.log(question++);
 
   // for loop for the choices array to create the choice "button" for each choice
   for (var i = 0; i < choiceArr.length; i++) {
-    var butt = document.createElement("button");
-      butt.innerHTML =choiceArr[i];
-      choicesEl.appendChild(butt);
+    var choiceButton = document.createElement("button");
+      choiceButton.innerHTML =choiceArr[i];
+      choicesEl.appendChild(choiceButton);
       choicesEl.setAttribute("id", "choiceButtons")
-  };
-  
+
+
+      // CANNOT FIGURE OUT HOW TO: on click of one of the buttons go to the next question and next set of choices
+  choiceButton.addEventListener("click", function(event){
+    console.log("button.event", event.target);
+    if (event.target.matches("choiceButtons"))
+    {
+      choicesEl.innerText = currentChoicesIndex++;
+      questionsEl.innerText = currentQuestionIndex++;
+    };
+
+    choiceButton.onclick = ()=> {
+      for (var m = 0; m < questions.length; m++) {
+      // questionsEl.innerText = questions[m++];
+      // document.getElementById("questions").innerHTML = questions[m++];
+      }
+    }
+  });
+};
+};
+
+// functin to move to next question 
+  function nextQuestion() {
+
+  }
+
+
+
+// Function to check answers
+
+
+
+
+  /*
   document.getElementById("#choiceButtons").addEventListener("click", function() {
       // call the function to check answers
       // to push the next question, you need to have a function to be executed 
       currentQuestionsIndex++;
   });
-  
-  
-
-  // if the user clicks the correct button--> show correct and go to next question
-  // if user clicks wrong --> show wrong answer and go to next question 
-  butt.addEventListener("click", function(event){
-    console.log("button.event", event.target);
-    if (event.target.matches("choiceButtons"))
-    {
-      event.preventDefault();
-      currentQuestionsIndex++; 
-    }
-  }); 
-
-  currentQuestionIndex++;
-
-};
-
-
-
-
-// helpful code from 4-19 
-/*function handleClick(event) {
-  if (event.target.matches("button")) {
-    event.preventDefault();
-    modalEl.style.display = "block";
-    currentId = parseInt(event.target.parentElement.id);
-    var name = people[currentId].name;
-    var description = people[currentId].description;
-    modalNameEl.textContent = name;
-    if(description) {
-      descriptionEl.value = description;
-    } else {
-      descriptionEl.value = "";
-    }
-  }
-}
-
-closeEl.addEventListener("click", close);
-saveBtn.addEventListener("click", function(event) {
-  event.preventDefault();
-  people[currentId].description = descriptionEl.value;
-  close();
-}); /*
-
-
+  *
 
 /**
  * Function to start the quiz
- * 
- * @description
+ *
  * This function does the following:
- *  - [x] Hide/show page elements
- *  - [x] Start the timer
- *  - [x] Get the next question
- */
+ *  - [x] Get the next question*/
 function startQuiz() {
-
   // hide start screen
   var startScreenEl = document.getElementById("start-screen");
   startScreenEl.setAttribute("class", "hide");
-
   // un-hide questions container
   questionsEl.removeAttribute("class", "hide");
-
   // start timer
   timerId = setInterval(clockTick, 1000);
-
   // show starting time
   timerEl.textContent = time;
-
   // call the function that gets the next question 
   //getQuestion();
   getQuestion();
 }
 
-
 /**
  * Function to display next question
  * 
- * @description
  * This function will:
  *  - [ ] Retrieve next question and answers
  *  - [ ] Update the page accordingly
- * 
  * @see https://www.w3schools.com/jsref/event_onclick.asp
  * @see https://www.w3schools.com/js/js_htmldom_methods.asp
  */
-
   /*
     @TODO: write your function code here
   */
@@ -185,8 +136,7 @@ function startQuiz() {
 
 /**
  * Function that runs when the user clicks on an answer
- * 
- * @description
+ *
  * This function will:
  *  - [ ] Check if the user picked the right answer or not, and behave accordingly
  *  - [x] End quiz if no more questions left, or go onto next question
@@ -255,7 +205,7 @@ function clockTick() {
         window.clearInterval(update);
       }
     startBtn.addEventListener("click", clockTick);
-    };
+    }
   /*
     @TODO: write the rest of your function code here
   */
@@ -289,3 +239,8 @@ submitBtn.onclick = saveHighscore;
 
 // user clicks button to start quiz
 startBtn.onclick = startQuiz;
+
+// user clicks choice button to choose answer and go to next question
+
+
+// choiceButton.onclick = nextQuestion;
