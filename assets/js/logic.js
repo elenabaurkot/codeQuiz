@@ -98,7 +98,6 @@ function getQuestion(){
       currentQuestionsIndex++;
   });
   *
-
 /**
  * Function to start the quiz
  *
@@ -117,6 +116,7 @@ function startQuiz() {
   // call the function that gets the next question 
   //getQuestion();
   getQuestion();
+  quizEnd();
 }
 
 /**
@@ -179,13 +179,11 @@ function questionClick() {
  * @see https://www.w3schools.com/jsref/met_element_setattribute.asp
  * @see https://www.w3schools.com/jsref/met_element_removeattribute.asp
  */
-function quizEnd() {
+function quizEnd() {  
+  if(time === 0) {
+  window.location.href = "highscores.html";
+}};
 
-  /*
-    @TODO: write your function code here
-  */
-  
-}
 
 
 /**
