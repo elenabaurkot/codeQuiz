@@ -65,49 +65,27 @@ function getQuestion(){
   }
 };
 
-      
-  
-  // CANNOT FIGURE OUT HOW TO: on click of one of the buttons go to the next question and next set of choices
-  // var buttonChoice = document.querySelector(".wrapper")
-  
-
-  /*buttonChoice.addEventListener("click", function(event){
-    console.log("button.event", event.target);
-    if (event.target.matches("choiceButtons"))
-    {
-      choicesEl.innerText = currentQuestionIndex++;
-      question = currentQuestionIndex++; 
-      currentQuestionIndex++;
-      question;
-      choiceArr;
-      getQuestion();
-    };
-  });  */
+    
 
   document.querySelector(".choices").addEventListener("click", function(event){
     console.log("button.event", event.target);
     console.log(event.target.textContent);
-      if (event.target.textContent === questions[currentQuestionIndex].a){
-        alert("You got it!");
-      }
-
+      getAnswer();
       currentQuestionIndex++;
+      questionClick();
       getQuestion();
   });
 
-  
-
-
-
-
-// functin to move to next question 
-  function nextQuestion() {
-
+  // function to check if answer is correct
+  function getAnswer (){
+    if (event.target.textContent === questions[currentQuestionIndex].a){
+      alert("You got it!");
+    }
+    if (event.target.textContent !== questions[currentQuestionIndex].a){
+      alert("not quite, lose ten seconds");
+      time = time - 10;
+    }
   }
-
-
-
-// Function to check answers
 
 
 /**
@@ -126,20 +104,8 @@ function startQuiz() {
   // call the function that gets the next question 
   //getQuestion();
   getQuestion();
+  
 }
-
-/**
- * Function to display next question
- * 
- * This function will:
- *  - [ ] Retrieve next question and answers
- *  - [ ] Update the page accordingly
- * @see https://www.w3schools.com/jsref/event_onclick.asp
- * @see https://www.w3schools.com/js/js_htmldom_methods.asp
- */
-  /*
-    @TODO: write your function code here
-  */
 
 
 
@@ -158,13 +124,7 @@ function startQuiz() {
  * @see https://www.w3schools.com/jsref/met_element_removeattribute.asp
  */
 function questionClick() {
-
-  /*
-    @TODO: write the rest of your function code here
-  */
-
-  // check if we've run out of questions
-  if (currentQuestionIndex === questions.length) {
+  if (questions[currentQuestionIndex]=== 5) {
     window.location.href = "highscores.html";
   } else {
     getQuestion();
@@ -212,13 +172,7 @@ function clockTick() {
       }
     startBtn.addEventListener("click", clockTick);
     }
-  /*
-    @TODO: write the rest of your function code here
-  */
 
-  
-  // end the quiz if the user runs out of time
-  
 
 
 /**
@@ -247,7 +201,3 @@ submitBtn.onclick = saveHighscore;
 // user clicks button to start quiz
 startBtn.onclick = startQuiz;
 
-// user clicks choice button to choose answer and go to next question
-
-
-// choiceButton.onclick = nextQuestion;
