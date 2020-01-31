@@ -51,7 +51,6 @@ var questionss = document.getElementById("questions");
 
 // function to show questions
 function getQuestion(){
-  endQuiz();
   question = questions[currentQuestionIndex].q;
   questionss.innerHTML = '';
   questionss.innerHTML = question;
@@ -67,14 +66,18 @@ function getQuestion(){
     }
   };
 
-    
-
+// When a choice button is clicked check if answer is correct, increase the question index and if a next question exists go to it, otherwise end quiz
   document.querySelector(".choices").addEventListener("click", function(event){
     console.log("button.event", event.target);
     console.log(event.target.textContent);
       getAnswer();
       currentQuestionIndex++;
-      getQuestion();
+      // see if there's even a next question
+      if (currentQuestionIndex >= questions.length) {
+        endQuiz();
+      } else {
+        getQuestion();
+      }
   });
 
   // function to check if answer is correct
@@ -124,13 +127,6 @@ function startQuiz() {
  * @see https://www.w3schools.com/jsref/met_element_setattribute.asp
  * @see https://www.w3schools.com/jsref/met_element_removeattribute.asp
  */
-function endQuiz() {
-  for(var i = 0; i < questions.length; i++){
-  if (currentQuestionIndex > questions.length-1) {
-    window.location.href = "highscores.html";
-  }
-}
-};
 
 
 /**
@@ -148,6 +144,14 @@ function endQuiz() {
  * @see https://www.w3schools.com/jsref/met_element_setattribute.asp
  * @see https://www.w3schools.com/jsref/met_element_removeattribute.asp
  */
+function endQuiz() {
+  // for(var i = 0; i < questions.length; i++){
+    // if (currentQuestionIndex > questions.length-1) {
+      alert("You are done!")
+      window.location.href = "highscores.html";
+    // }
+  // }
+};
 
 //  timer not working at end to redirect
 
