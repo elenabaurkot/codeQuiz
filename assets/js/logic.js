@@ -51,19 +51,21 @@ var questionss = document.getElementById("questions");
 
 // function to show questions
 function getQuestion(){
+  endQuiz();
   question = questions[currentQuestionIndex].q;
   questionss.innerHTML = '';
   questionss.innerHTML = question;
   choiceArr = questions[currentQuestionIndex].choices;
   choicess.innerHTML = "";
+  
   // for loop for the choices array to create the choice "button" for each choice
   for (var i = 0; i < choiceArr.length; i++) {
     var choiceButton = document.createElement("button");
       choiceButton.innerHTML =choiceArr[i];
       choicesEl.appendChild(choiceButton);
       choicesEl.setAttribute("class", "choice");
-  }
-};
+    }
+  };
 
     
 
@@ -72,7 +74,6 @@ function getQuestion(){
     console.log(event.target.textContent);
       getAnswer();
       currentQuestionIndex++;
-      questionClick();
       getQuestion();
   });
 
@@ -123,14 +124,13 @@ function startQuiz() {
  * @see https://www.w3schools.com/jsref/met_element_setattribute.asp
  * @see https://www.w3schools.com/jsref/met_element_removeattribute.asp
  */
-function questionClick() {
-  if (questions[currentQuestionIndex]=== 5) {
+function endQuiz() {
+  for(var i = 0; i < questions.length; i++){
+  if (currentQuestionIndex > questions.length-1) {
     window.location.href = "highscores.html";
-  } else {
-    getQuestion();
   }
-
 }
+};
 
 
 /**
@@ -167,7 +167,7 @@ function clockTick() {
       if (time < questions.length * 20) {
         timerEl.innerHTML = time; 
       }
-      if (time < 1) {
+      if (time < 1 ) {
         window.location.href = "highscores.html";
       }
     startBtn.addEventListener("click", clockTick);
