@@ -33,6 +33,9 @@ var questions = [
 ];
 
 
+// when the end quiz--> stop time, alert high score, go to final score page, store high scores with initials
+
+
 // variables to keep track of quiz state
 var time = questions.length * 20;
 var currentQuestionIndex = 0;
@@ -47,7 +50,7 @@ var choiceArr = questions[currentQuestionIndex].choices;
 var question = questions[currentQuestionIndex].q;
 var choicess = document.querySelector(".choices");
 var questionss = document.getElementById("questions");
-
+var rightWrong = document.getElementById("right-wrong");
 
 // function to show questions
 function getQuestion(){
@@ -83,11 +86,11 @@ function getQuestion(){
   // function to check if answer is correct
   function getAnswer (){
     if (event.target.textContent === questions[currentQuestionIndex].a){
-      alert("You got it!");
+      rightWrong.textContent= "You got it!";
     }
     if (event.target.textContent !== questions[currentQuestionIndex].a){
-      alert("not quite, lose ten seconds");
       time = time - 10;
+      rightWrong.textContent= "Not quite!";
     }
   }
 
@@ -147,7 +150,7 @@ function startQuiz() {
 function endQuiz() {
   // for(var i = 0; i < questions.length; i++){
     // if (currentQuestionIndex > questions.length-1) {
-      alert("You are done!")
+      alert("You are done! Your score is: " + time);
       window.location.href = "highscores.html";
     // }
   // }

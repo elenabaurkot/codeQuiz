@@ -86,3 +86,9 @@ li:nth-child(odd) {
   top: 10px;
   right: 10px;
 }
+
+#right-wrong {
+  text-align: center;
+  background-color: blueviolet;
+  color: white;
+}
