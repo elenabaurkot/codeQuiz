@@ -1,3 +1,5 @@
+
+var yourScore = document.getElementById("your-score");
 /**
  * Function to print high scores
  * 
@@ -11,14 +13,14 @@
  * @see https://www.w3schools.com/jsref/met_node_appendchild.asp
  * @see https://www.w3schools.com/jsref/met_document_createelement.asp
  */
+
 function printHighscores() {
-  
+  yourScore.textContent = ("Your score is: ");
   /*
     @TODO: write your function code here
   */
   
 }
-
 
 /**
  * Function to clear high scores

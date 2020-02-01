@@ -32,12 +32,8 @@ var questions = [
     },
 ];
 
-
-// when the end quiz--> stop time, alert high score, go to final score page, store high scores with initials
-
-
 // variables to keep track of quiz state
-var time = questions.length * 20;
+var time = questions.length * 10;
 var currentQuestionIndex = 0;
 var timerId;
 
@@ -51,10 +47,14 @@ var question = questions[currentQuestionIndex].q;
 var choicess = document.querySelector(".choices");
 var questionss = document.getElementById("questions");
 var rightWrong = document.getElementById("right-wrong");
+var score = 0; 
+var scoreCount = document.getElementById("score");
+
 
 // function to show questions
 function getQuestion(){
   question = questions[currentQuestionIndex].q;
+  scoreCount.textContent = 'Your score is: ' + score;
   questionss.innerHTML = '';
   questionss.innerHTML = question;
   choiceArr = questions[currentQuestionIndex].choices;
@@ -87,12 +87,17 @@ function getQuestion(){
   function getAnswer (){
     if (event.target.textContent === questions[currentQuestionIndex].a){
       rightWrong.textContent= "You got it!";
+      score += 10;  
     }
     if (event.target.textContent !== questions[currentQuestionIndex].a){
       time = time - 10;
       rightWrong.textContent= "Not quite!";
     }
   }
+  /* @see https://www.w3schools.com/jsref/met_win_settimeout.asp
+ * @see https://www.w3schools.com/jsref/met_element_setattribute.asp
+ * @see https://www.w3schools.com/jsref/met_element_removeattribute.asp
+ */
 
 
 /**
@@ -110,64 +115,23 @@ function startQuiz() {
   timerEl.textContent = time;
   // call the function that gets the next question 
   //getQuestion();
-  getQuestion();
-  
+  getQuestion(); 
 }
-
-
-
-/**
- * Function that runs when the user clicks on an answer
- *
- * This function will:
- *  - [ ] Check if the user picked the right answer or not, and behave accordingly
- *  - [x] End quiz if no more questions left, or go onto next question
- *
- * HINT: for hiding/showing elements, take a look at the `.hide` class in
- *  `styles.css`!
- * 
- * @see https://www.w3schools.com/jsref/met_win_settimeout.asp
- * @see https://www.w3schools.com/jsref/met_element_setattribute.asp
- * @see https://www.w3schools.com/jsref/met_element_removeattribute.asp
- */
-
 
 /**
  * Function to end the quiz
- * 
- * @description
- * This function will:
- *  - [ ] Stop the timer
- *  - [ ] Update the DOM accordingly
- *
- * HINT: for hiding/showing elements, take a look at the `.hide` class in
- *  `styles.css`!
- * 
  * @see https://www.w3schools.com/jsref/met_win_clearinterval.asp
  * @see https://www.w3schools.com/jsref/met_element_setattribute.asp
  * @see https://www.w3schools.com/jsref/met_element_removeattribute.asp
  */
 function endQuiz() {
-  // for(var i = 0; i < questions.length; i++){
-    // if (currentQuestionIndex > questions.length-1) {
-      alert("You are done! Your score is: " + time);
       window.location.href = "highscores.html";
-    // }
-  // }
 };
-
-//  timer not working at end to redirect
-
 
 
 
 /**
  * Function to handle the timer
- * 
- * @description
- * This function will:
- *  - [ ] Update the timer
- *  - [x] End the quiz if the user runs out of time
  */
 function clockTick() {
       time = time - 1; 
@@ -180,26 +144,19 @@ function clockTick() {
     startBtn.addEventListener("click", clockTick);
     }
 
-
-
 /**
  * Function to save a new high score
- * 
  * @description
  * This function will:
  *  - [ ] Let user save their initials and high score
  *  - [ ] Redirect to high scores page
- * 
  * @see https://www.w3schools.com/jsref/prop_text_value.asp
  * @see https://www.w3schools.com/jsref/prop_win_localstorage.asp
  * @see https://www.w3schools.com/howto/howto_js_redirect_webpage.asp
  */
 function saveHighscore() {
 
-  /*
-    @TODO: write your function code here
-  */
-
+ 
 }
 
 // user clicks button to submit initials
