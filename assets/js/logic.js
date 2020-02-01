@@ -49,6 +49,7 @@ var questionss = document.getElementById("questions");
 var rightWrong = document.getElementById("right-wrong");
 var score = 0; 
 var scoreCount = document.getElementById("score");
+var currentS = localStorage.getItem("score");
 
 
 // function to show questions
@@ -87,13 +88,17 @@ function getQuestion(){
   function getAnswer (){
     if (event.target.textContent === questions[currentQuestionIndex].a){
       rightWrong.textContent= "You got it!";
-      score += 10;  
+      score +=  10;
+      localStorage.setItem("score", score);
+      currentS;
     }
     if (event.target.textContent !== questions[currentQuestionIndex].a){
       time = time - 10;
       rightWrong.textContent= "Not quite!";
     }
   }
+
+
   /* @see https://www.w3schools.com/jsref/met_win_settimeout.asp
  * @see https://www.w3schools.com/jsref/met_element_setattribute.asp
  * @see https://www.w3schools.com/jsref/met_element_removeattribute.asp

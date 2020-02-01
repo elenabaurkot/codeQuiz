@@ -15,7 +15,7 @@ var yourScore = document.getElementById("your-score");
  */
 
 function printHighscores() {
-  yourScore.textContent = ("Your score is: ");
+  yourScore.textContent = ("Your score is: " + currentS);
   /*
     @TODO: write your function code here
   */
