@@ -1,4 +1,3 @@
-
 var yourScore = document.getElementById("your-score");
 /**
  * Function to print high scores

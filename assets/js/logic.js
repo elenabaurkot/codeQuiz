@@ -159,13 +159,6 @@ function clockTick() {
  * @see https://www.w3schools.com/jsref/prop_win_localstorage.asp
  * @see https://www.w3schools.com/howto/howto_js_redirect_webpage.asp
  */
-function saveHighscore() {
-
- 
-}
-
-// user clicks button to submit initials
-submitBtn.onclick = saveHighscore;
 
 // user clicks button to start quiz
 startBtn.onclick = startQuiz;
