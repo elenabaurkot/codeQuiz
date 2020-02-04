@@ -1,6 +1,17 @@
+// run function when page loads
+document.addEventListener("DOMContentLoaded", function(){
+  printHighscores();
+});
+
 var yourScore = document.getElementById("your-score");
+var currentS = localStorage.getItem("score");
+var scoreList = document.getElementById("highscores");
+var initials = document.querySelector("#usr").value;
+var highScoresArr = [];
+
 /**
  * Function to print high scores
+
  * 
  * @description
  * This function will:
@@ -15,11 +26,21 @@ var yourScore = document.getElementById("your-score");
 
 function printHighscores() {
   yourScore.textContent = ("Your score is: " + currentS);
-  /*
-    @TODO: write your function code here
-  */
-  
+  scoreList.textContent = JSON.parse(localStorage.getItem("high scores") || "[]");
 }
+
+document.querySelector(".submit").addEventListener("click", function(event){
+  initials = document.querySelector("#usr").value; 
+  localStorage.setItem("score", currentS);
+  console.log(currentS);
+  localStorage.setItem("initials", initials); 
+  console.log(initials);
+  highScoresArr.push(initials + ": " + currentS);
+  localStorage.setItem("high scores", JSON.stringify(highScoresArr));
+  printHighscores();
+});
+
+
 
 /**
  * Function to clear high scores
@@ -42,9 +63,8 @@ function clearHighscores() {
 
 }
 
-
 // user clicks button to clear high scores
 document.getElementById("clear").onclick = clearHighscores;
 
-// run function when page loads
-printHighscores();
+
+// printHighscores();
