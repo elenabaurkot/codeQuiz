@@ -8,10 +8,10 @@ var currentS = localStorage.getItem("score");
 var scoreList = document.getElementById("highscores");
 var initials = document.querySelector("#usr").value;
 var highScoresArr = [];
+var scoreArr = [];
 
 /**
  * Function to print high scores
-
  * 
  * @description
  * This function will:
@@ -24,18 +24,35 @@ var highScoresArr = [];
  * @see https://www.w3schools.com/jsref/met_document_createelement.asp
  */
 
+
+
 function printHighscores() {
   yourScore.textContent = ("Your score is: " + currentS);
-  scoreList.textContent = JSON.parse(localStorage.getItem("high scores") || "[]");
+  scoreArr = JSON.parse(localStorage.getItem("high scores"));
+
+  for(var i = 0; i < scoreArr.length; i++) {
+
+  var user = scoreArr[i].initials;
+  var userScore = scoreArr[i].score;
+  // alert (user + " " + userScore);
+  var li = document.createElement("li");
+  li.textContent = (user + " " + userScore)
+  scoreList.append(li);
+
+}; 
+
+  // highScoresArr = JSON.parse(localStorage.getItem("high scores"));
 }
 
 document.querySelector(".submit").addEventListener("click", function(event){
+  // scoreList= JSON.parse(localStorage.getItem("high scores") || "[]");
+  // highScoresArr = scoreList;
   initials = document.querySelector("#usr").value; 
-  localStorage.setItem("score", currentS);
-  console.log(currentS);
-  localStorage.setItem("initials", initials); 
-  console.log(initials);
-  highScoresArr.push(initials + ": " + currentS);
+  // localStorage.setItem("score", currentS);
+  // console.log(currentS);
+  // localStorage.setItem("initials", initials); 
+  // console.log(initials);
+  highScoresArr.push({initials:initials, score:currentS});
   localStorage.setItem("high scores", JSON.stringify(highScoresArr));
   printHighscores();
 });
@@ -53,6 +70,7 @@ document.querySelector(".submit").addEventListener("click", function(event){
  * @see https://www.w3schools.com/jsref/prop_win_localstorage.asp
  */
 function clearHighscores() {
+  localStorage.clear();
 
   /*
     @TODO: write the rest of your function code here
