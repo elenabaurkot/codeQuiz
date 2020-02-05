@@ -54,6 +54,7 @@ var highScoresArr= JSON.parse(localStorage.getItem('high scores') || '[]');
 var endScreen = document.getElementById("end-screen");
 var questionScreen = document.getElementById("question-screen");
 var initials = document.querySelector("#usr").value;
+var highScoresArr = [];
 
 
 // function to show questions
@@ -103,13 +104,6 @@ function getQuestion(){
     }
   }
 
-
-  /* @see https://www.w3schools.com/jsref/met_win_settimeout.asp
- * @see https://www.w3schools.com/jsref/met_element_setattribute.asp
- * @see https://www.w3schools.com/jsref/met_element_removeattribute.asp
- */
-
-
 /**
  * Function to start the quiz
  */
@@ -131,8 +125,6 @@ function startQuiz() {
 /**
  * Function to end the quiz
  * @see https://www.w3schools.com/jsref/met_win_clearinterval.asp
- * @see https://www.w3schools.com/jsref/met_element_setattribute.asp
- * @see https://www.w3schools.com/jsref/met_element_removeattribute.asp
  */
 function endQuiz() {
     questionScreen.setAttribute("class", "hide");
@@ -148,13 +140,6 @@ function endQuiz() {
       submitBtn.setAttribute("class", "hide");
       document.getElementById("play-again").removeAttribute("class", "hide");
     });
-  
-
-      // window.location.href = "highscores.html";
-      // 1. make wrapper on html around everything on Q page
-      // 2. clear the wrapper --> .innerhtml = '
-      // 3. insert code of form from highscore page to the above innerhtml
-      // 4. make another function for the button on click --> this will say your score is whatever, on click--> 
 };
 
 
@@ -176,7 +161,6 @@ function clockTick() {
       }
     startBtn.addEventListener("click", clockTick);
     }
-
 
 // user clicks button to start quiz
 startBtn.onclick = startQuiz;
