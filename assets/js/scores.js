@@ -5,28 +5,16 @@ document.addEventListener("DOMContentLoaded", function(){
 
   }
 
-  document.querySelector(".submit").addEventListener("click", function(event){
-    highScoresArr= JSON.parse(localStorage.getItem("high scores") || "[]");
-    initials = document.querySelector("#usr").value; 
-    highScoresArr.push({initials:initials, score:currentS});
-    localStorage.setItem("high scores", JSON.stringify(highScoresArr));
-    printHighscores();
-    document.getElementById('form-group').innerHTML= '';
-  });
-
-
 
  });
 
 var yourScore = document.getElementById("your-score");
 var currentS = localStorage.getItem("score");
 var scoreList = document.getElementById("highscores");
-var initials = document.querySelector("#usr").value;
 var highScoresArr = [];
 var scoreArr = [];
 
 function printHighscores() {
-  yourScore.textContent = ("Your score is: " + currentS);
   scoreArr = JSON.parse(localStorage.getItem("high scores"));
   scoreList.textContent ='';
   for(var i = 0; i < scoreArr.length; i++) {
@@ -35,10 +23,6 @@ function printHighscores() {
   var li = document.createElement("li");
   li.textContent = (user + " " + userScore)
   scoreList.append(li);
-
-  if (currentS === null) {
-    initials.display = 'none';
-  }
 }; 
 };
 
@@ -57,7 +41,7 @@ document.querySelector(".submit").addEventListener("click", function(event){
 
 function clearHighscores() {
   localStorage.clear();
-  document.getElementById('form-group').innerHTML= '';
+  document.getElementById("highscores").setAttribute("class", "hide");
   // window.location.reload();
 };
 
