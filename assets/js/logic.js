@@ -53,6 +53,7 @@ var currentS = localStorage.getItem("score");
 var highScoresArr= JSON.parse(localStorage.getItem('high scores') || '[]');
 var endScreen = document.getElementById("end-screen");
 var questionScreen = document.getElementById("question-screen");
+var initials = document.querySelector("#usr").value;
 
 
 // function to show questions
@@ -82,6 +83,7 @@ function getQuestion(){
       // see if there's even a next question
       if (currentQuestionIndex >= questions.length) {
         endQuiz();
+
       } else {
         getQuestion();
       }
@@ -137,11 +139,12 @@ function endQuiz() {
     endScreen.removeAttribute("class", "hide");
 
     submitBtn.addEventListener("click", function(event){
-      // highScoresArr= JSON.parse(localStorage.getItem("high scores") || "[]");
-      initials = document.querySelector("#usr").value; 
+      // highScoresArr= JSON.parse(localStorage.getItem("high scores") || "[]"); 
       highScoresArr.push({initials:initials, score:currentS});
       localStorage.setItem("high scores", JSON.stringify(highScoresArr));
-      document.querySelector("#usr").value = '';
+      // document.querySelector("#usr").value = '';
+      document.getElementById("form-group").setAttribute("class", "hide");
+      document.getElementById("score").setAttribute("class", "hide");
       submitBtn.setAttribute("class", "hide");
       document.getElementById("play-again").removeAttribute("class", "hide");
     });
@@ -164,6 +167,8 @@ function clockTick() {
       if (time < questions.length * 20) {
         timerEl.innerHTML = time; 
       }
+      if (currentQuestionIndex >= questions.length) {
+        timerEl.textContent = 0;}
       if (time < 1 ) {
       questionScreen.setAttribute("class", "hide");
       endScreen.removeAttribute("class", "hide");
