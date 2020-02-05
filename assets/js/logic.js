@@ -50,6 +50,9 @@ var rightWrong = document.getElementById("right-wrong");
 var score = 0; 
 var scoreCount = document.getElementById("score");
 var currentS = localStorage.getItem("score");
+var highScoresArr= JSON.parse(localStorage.getItem('high scores') || '[]');
+var endScreen = document.getElementById("end-screen");
+var questionScreen = document.getElementById("question-screen");
 
 
 // function to show questions
@@ -130,12 +133,30 @@ function startQuiz() {
  * @see https://www.w3schools.com/jsref/met_element_removeattribute.asp
  */
 function endQuiz() {
-      window.location.href = "highscores.html";
+    questionScreen.setAttribute("class", "hide");
+    endScreen.removeAttribute("class", "hide");
+
+    submitBtn.addEventListener("click", function(event){
+      // highScoresArr= JSON.parse(localStorage.getItem("high scores") || "[]");
+      initials = document.querySelector("#usr").value; 
+      highScoresArr.push({initials:initials, score:currentS});
+      localStorage.setItem("high scores", JSON.stringify(highScoresArr));
+      document.querySelector("#usr").value = '';
+      submitBtn.setAttribute("class", "hide");
+      document.getElementById("play-again").removeAttribute("class", "hide");
+    });
+  
+
+      // window.location.href = "highscores.html";
+      // 1. make wrapper on html around everything on Q page
+      // 2. clear the wrapper --> .innerhtml = '
+      // 3. insert code of form from highscore page to the above innerhtml
+      // 4. make another function for the button on click --> this will say your score is whatever, on click--> 
 };
 
 
 
-/**
+/*
  * Function to handle the timer
  */
 function clockTick() {
@@ -144,21 +165,13 @@ function clockTick() {
         timerEl.innerHTML = time; 
       }
       if (time < 1 ) {
-        window.location.href = "highscores.html";
+      questionScreen.setAttribute("class", "hide");
+      endScreen.removeAttribute("class", "hide");
+      timerEl.textContent = 0;
       }
     startBtn.addEventListener("click", clockTick);
     }
 
-/**
- * Function to save a new high score
- * @description
- * This function will:
- *  - [ ] Let user save their initials and high score
- *  - [ ] Redirect to high scores page
- * @see https://www.w3schools.com/jsref/prop_text_value.asp
- * @see https://www.w3schools.com/jsref/prop_win_localstorage.asp
- * @see https://www.w3schools.com/howto/howto_js_redirect_webpage.asp
- */
 
 // user clicks button to start quiz
 startBtn.onclick = startQuiz;

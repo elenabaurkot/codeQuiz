@@ -101,6 +101,19 @@ li:nth-child(odd) {
   font-weight: bold;
 }
 
+#end-screen {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  text-align: center;
+  width: 50%;
+  color: #563d7c;
+  width: 50%;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
 #score {
   display: block;
   margin-left: auto;
