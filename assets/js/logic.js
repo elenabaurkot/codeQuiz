@@ -131,10 +131,10 @@ function endQuiz() {
     endScreen.removeAttribute("class", "hide");
 
     submitBtn.addEventListener("click", function(event){
-      // highScoresArr= JSON.parse(localStorage.getItem("high scores") || "[]"); 
+      highScoresArr= JSON.parse(localStorage.getItem("high scores") || "[]"); 
+      var initials = document.querySelector("#usr").value;
       highScoresArr.push({initials:initials, score:currentS});
       localStorage.setItem("high scores", JSON.stringify(highScoresArr));
-      // document.querySelector("#usr").value = '';
       document.getElementById("form-group").setAttribute("class", "hide");
       document.getElementById("score").setAttribute("class", "hide");
       submitBtn.setAttribute("class", "hide");
