@@ -124,19 +124,25 @@ function startQuiz() {
 
 /**
  * Function to end the quiz
- * @see https://www.w3schools.com/jsref/met_win_clearinterval.asp
  */
 function endQuiz() {
     questionScreen.setAttribute("class", "hide");
     endScreen.removeAttribute("class", "hide");
+    scoreCount.textContent = 'Your score is: ' + score;
+    if (score === 0) {
+      document.getElementById("form-group").setAttribute("class", "hide");
+      submitBtn.setAttribute("class", "hide");
+      document.getElementById("play-again").removeAttribute("class", "hide");
+    };
 
     submitBtn.addEventListener("click", function(event){
       highScoresArr= JSON.parse(localStorage.getItem("high scores") || "[]"); 
       var initials = document.querySelector("#usr").value;
-      highScoresArr.push({initials:initials, score:currentS});
+      highScoresArr.push({initials:initials, score:score});
       localStorage.setItem("high scores", JSON.stringify(highScoresArr));
+      highScoresArr.sort();
       document.getElementById("form-group").setAttribute("class", "hide");
-      document.getElementById("score").setAttribute("class", "hide");
+      // document.getElementById("score").setAttribute("class", "hide");
       submitBtn.setAttribute("class", "hide");
       document.getElementById("play-again").removeAttribute("class", "hide");
     });
