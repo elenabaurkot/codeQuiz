@@ -139,8 +139,10 @@ function endQuiz() {
       highScoresArr= JSON.parse(localStorage.getItem("high scores") || "[]"); 
       var initials = document.querySelector("#usr").value;
       highScoresArr.push({initials:initials, score:score});
+      highScoresArr.sort(function(a, b){
+        return b.score - a.score;
+      });
       localStorage.setItem("high scores", JSON.stringify(highScoresArr));
-      highScoresArr.sort();
       document.getElementById("form-group").setAttribute("class", "hide");
       // document.getElementById("score").setAttribute("class", "hide");
       submitBtn.setAttribute("class", "hide");
